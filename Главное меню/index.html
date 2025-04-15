@@ -21,6 +21,9 @@
             <a href="../Игра/index.html" class="menu-play-button">
                 <img src="icons/4.svg" alt="Играть">
             </a>
+            <button class="menu-buy-button" id="buyCoinsButton">
+                Купить монеты
+            </button>
         </div>
     </div>
     <script>
@@ -59,6 +62,15 @@
                 if (balanceDisplay) {
                     balanceDisplay.textContent = coins;
                 }
+            }
+            
+            // Обработчик для кнопки "Купить монеты"
+            const buyCoinsButton = document.getElementById('buyCoinsButton');
+            if (buyCoinsButton) {
+                buyCoinsButton.addEventListener('click', function() {
+                    // Открываем новую вкладку для покупки монет
+                    window.open('buy-coins.html', '_blank');
+                });
             }
         });
     </script>

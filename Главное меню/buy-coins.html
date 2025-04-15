@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Купить монеты</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+</head>
+<body>
+    <div class="menu-container">
+        <a href="index.html" class="menu-back-button">
+            <img src="icons/6.svg" alt="Главное меню">
+        </a>
+        <div id="ton-connect"></div>
+        <div class="coins-grid">
+            <div class="coin-package">
+                <img src="../Игра/icons/7.svg" alt="Монеты" class="coin-icon">
+                <h2>100 монет</h2>
+                <p class="price">0.1 TON</p>
+                <button class="menu-button" onclick="buyCoins(100, 0.1)">Купить</button>
+            </div>
+            <div class="coin-package">
+                <img src="../Игра/icons/7.svg" alt="Монеты" class="coin-icon">
+                <h2>500 монет</h2>
+                <p class="price">0.4 TON</p>
+                <button class="menu-button" onclick="buyCoins(500, 0.4)">Купить</button>
+            </div>
+            <div class="coin-package">
+                <img src="../Игра/icons/7.svg" alt="Монеты" class="coin-icon">
+                <h2>1000 монет</h2>
+                <p class="price">0.7 TON</p>
+                <button class="menu-button" onclick="buyCoins(1000, 0.7)">Купить</button>
+            </div>
+            <div class="coin-package">
+                <img src="../Игра/icons/7.svg" alt="Монеты" class="coin-icon">
+                <h2>5000 монет</h2>
+                <p class="price">3 TON</p>
+                <button class="menu-button" onclick="buyCoins(5000, 3)">Купить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tonConnectUI = new TONConnectUI({
+            manifestUrl: 'tonconnect-manifest.json',
+            buttonRootId: 'ton-connect'
+        });
+
+        async function buyCoins(amount, price) {
+            try {
+                const wallet = await tonConnectUI.connectWallet();
+                if (!wallet) {
+                    alert('Пожалуйста, подключите кошелек');
+                    return;
+                }
+
+                // Здесь будет логика отправки транзакции
+                alert(`Покупка ${amount} монет за ${price} TON`);
+                
+                // После успешной покупки
+                const currentCoins = parseInt(localStorage.getItem('gameCoins') || 1000);
+                localStorage.setItem('gameCoins', (currentCoins + amount).toString());
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Ошибка при покупке монет:', error);
+                alert('Произошла ошибка при покупке монет');
+            }
+        }
+    </script>
+
+    <style>
+        .menu-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .menu-back-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            transition: transform 0.3s, background 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-back-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-back-button img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .menu-title {
+            color: #fff;
+            font-size: 36px;
+            margin: 40px 0;
+        }
+
+        .coins-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .coin-package {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .coin-package:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .coin-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 15px;
+        }
+
+        .coin-package h2 {
+            color: #fff;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .price {
+            font-size: 28px;
+            color: #00ff88;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .menu-button {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .menu-button:hover {
+            background: #00cc6a;
+            transform: scale(1.05);
+        }
+
+        #ton-connect {
+            margin: 20px 0;
+        }
+    </style>
+</body>
+</html> 
