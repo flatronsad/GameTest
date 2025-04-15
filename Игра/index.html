@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="navigation-buttons">
+            <div class="balance-container">
+                <img src="icons/7.svg" alt="Монеты" class="coin-icon">
+                <span id="balance-display">1000</span>
+            </div>
+            <a href="../Главное меню/index.html" class="nav-button right-button">
+                <img src="icons/6.svg" alt="В меню">
+            </a>
+        </div>
+        <div class="game-options">
+            <button class="game-option" data-choice="камень">
+                <img src="icons/rock.svg" alt="Камень">
+            </button>
+            <button class="game-option" data-choice="ножницы">
+                <img src="icons/scissors.svg" alt="Ножницы">
+            </button>
+            <button class="game-option" data-choice="бумага">
+                <img src="icons/paper.svg" alt="Бумага">
+            </button>
+        </div>
+    </div>
+
+    <div class="result-modal" id="resultModal">
+        <div class="modal-content">
+            <h2>Результат игры</h2>
+            <p id="playerChoice"></p>
+            <p id="computerChoice"></p>
+            <p id="gameResult"></p>
+            <p id="coinsChange"></p>
+            <button id="playAgain">Еще раз</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
