@@ -5,20 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главное меню</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 </head>
 <body>
     <div class="menu-container">
-        <button class="wallet-button" id="connectWallet">
-            <img src="icons/wallet.svg" alt="Подключить кошелек">
-            <span>Подключить TON</span>
-        </button>
         <div class="menu-logo">
             <img src="icons/5.svg" alt="Логотип">
         </div>
+        <div id="ton-connect"></div>
         <a href="../Игра против компьютера/index.html" class="menu-play-button">
             <img src="icons/4.svg" alt="Играть">
         </a>
     </div>
-    <script src="script.js"></script>
+    <script>
+        const tonConnectUI = new TONConnectUI({
+            manifestUrl: 'https://flatronsad.github.io/GameTest/Главное%20меню/tonconnect-manifest.json',
+            buttonRootId: 'ton-connect'
+        });
+
+        tonConnectUI.onWalletConnected = (wallet) => {
+            console.log('Wallet connected:', wallet);
+            // Здесь можно добавить логику после успешной авторизации
+        };
+
+        tonConnectUI.onWalletDisconnected = () => {
+            console.log('Wallet disconnected');
+            // Здесь можно добавить логику после отключения кошелька
+        };
+    </script>
 </body>
 </html> 

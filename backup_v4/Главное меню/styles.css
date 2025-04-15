@@ -110,16 +110,4 @@ body {
 .menu-play-button img {
     width: 150px;
     height: auto;
-}
-
-#ton-connect {
-    margin: 20px auto;
-    text-align: center;
-}
-
-#ton-connect tonconnect-button {
-    --tc-button-background: #0088cc;
-    --tc-button-color: white;
-    --tc-button-border-radius: 12px;
-    --tc-button-font-family: Arial, sans-serif;
 } 
