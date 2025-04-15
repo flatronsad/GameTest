@@ -45,21 +45,31 @@
     <script>
         let tonConnectUI;
 
-        document.addEventListener('DOMContentLoaded', function() {
-            tonConnectUI = new TonConnectUI({
-                manifestUrl: '../Главное меню/tonconnect-manifest.json',
-                buttonRootId: 'ton-connect'
-            });
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                tonConnectUI = new TonConnectUI({
+                    manifestUrl: '../Главное меню/tonconnect-manifest.json',
+                    buttonRootId: 'ton-connect'
+                });
 
-            // Обработчик подключения кошелька
-            tonConnectUI.onWalletConnected = (wallet) => {
-                console.log('Wallet connected:', wallet);
-            };
+                // Обработчик подключения кошелька
+                tonConnectUI.onWalletConnected = (wallet) => {
+                    console.log('Wallet connected:', wallet);
+                };
 
-            // Обработчик отключения кошелька
-            tonConnectUI.onWalletDisconnected = () => {
-                console.log('Wallet disconnected');
-            };
+                // Обработчик отключения кошелька
+                tonConnectUI.onWalletDisconnected = () => {
+                    console.log('Wallet disconnected');
+                };
+
+                // Проверяем, есть ли уже подключенный кошелек
+                const wallet = await tonConnectUI.getWalletInfo();
+                if (wallet) {
+                    console.log('Already connected wallet:', wallet);
+                }
+            } catch (error) {
+                console.error('Error initializing TON Connect:', error);
+            }
         });
 
         async function buyCoins(amount, price) {
