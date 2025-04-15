@@ -8,11 +8,13 @@ const playAgainButton = document.getElementById('playAgain');
 const balanceElement = document.getElementById('balance');
 
 const choicesArray = ['камень', 'ножницы', 'бумага'];
-let balance = 1000;
+let balance = parseInt(localStorage.getItem('gameCoins')) || 1000;
+balanceElement.textContent = balance;
 
 function updateBalance(amount) {
     balance += amount;
     balanceElement.textContent = balance;
+    localStorage.setItem('gameCoins', balance);
 }
 
 function getComputerChoice() {

@@ -149,14 +149,26 @@ body {
     background-color: #006699;
 }
 
-.balance-display {
+.balance-container {
     position: absolute;
     top: 20px;
     left: 20px;
-    background-color: #0088cc;
-    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 20px;
     z-index: 1000;
+}
+
+.coin-icon {
+    width: 30px;
+    height: 30px;
+}
+
+#balance-display {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
 } 
