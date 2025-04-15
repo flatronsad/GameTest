@@ -4,4 +4,6 @@ node_modules/
 *.log
 .vscode/
 .idea/
-backup_v*/ 
+backup_v1/
+backup_v2/
+backup_v3/ 
