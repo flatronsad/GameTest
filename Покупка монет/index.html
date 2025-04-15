@@ -4,17 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Купить монеты</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../Главное меню/styles.css">
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 </head>
 <body>
     <div class="menu-container">
-        <a href="index.html" class="menu-back-button">
+        <a href="../Главное меню/index.html" class="menu-back-button">
             <img src="icons/6.svg" alt="Главное меню">
         </a>
-        <div class="wallet-container">
-            <div id="ton-connect"></div>
-        </div>
+        <div id="ton-connect"></div>
         <div class="coins-grid">
             <div class="coin-package">
                 <img src="../Игра/icons/7.svg" alt="Монеты" class="coin-icon">
@@ -44,34 +42,13 @@
     </div>
 
     <script>
-        let tonConnectUI;
-
-        document.addEventListener('DOMContentLoaded', function() {
-            tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-                manifestUrl: 'https://flatronsad.github.io/GameTest/Главное%20меню/tonconnect-manifest.json',
-                buttonRootId: 'ton-connect'
-            });
-
-            tonConnectUI.onWalletConnected = (wallet) => {
-                console.log('Wallet connected:', wallet);
-            };
-
-            tonConnectUI.onWalletDisconnected = () => {
-                console.log('Wallet disconnected');
-            };
+        const tonConnectUI = new TONConnectUI({
+            manifestUrl: '../Главное меню/tonconnect-manifest.json',
+            buttonRootId: 'ton-connect'
         });
 
         async function buyCoins(amount, price) {
             try {
-                if (!tonConnectUI) {
-                    alert('Пожалуйста, подождите инициализации TON Connect');
-                    return;
-                }
-
-                // Отключаем кошелек перед подключением
-                await tonConnectUI.disconnect();
-                
-                // Подключаем кошелек
                 const wallet = await tonConnectUI.connectWallet();
                 if (!wallet) {
                     alert('Пожалуйста, подключите кошелек');
@@ -84,7 +61,7 @@
                 // После успешной покупки
                 const currentCoins = parseInt(localStorage.getItem('gameCoins') || 1000);
                 localStorage.setItem('gameCoins', (currentCoins + amount).toString());
-                window.location.href = 'index.html';
+                window.location.href = '../Главное меню/index.html';
             } catch (error) {
                 console.error('Ошибка при покупке монет:', error);
                 alert('Произошла ошибка при покупке монет');
@@ -93,14 +70,6 @@
     </script>
 
     <style>
-        .menu-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            position: relative;
-        }
-
         .menu-back-button {
             position: absolute;
             top: 20px;
@@ -124,27 +93,20 @@
             height: 40px;
         }
 
-        .wallet-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        #ton-connect {
-            margin: 0;
-        }
-
         .coins-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             margin-top: 40px;
+            max-width: 300px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .coin-package {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 30px;
+            padding: 15px;
             text-align: center;
             transition: transform 0.3s, background 0.3s;
         }
@@ -155,21 +117,21 @@
         }
 
         .coin-icon {
-            width: 48px;
-            height: 48px;
-            margin-bottom: 15px;
+            width: 36px;
+            height: 36px;
+            margin-bottom: 10px;
         }
 
         .coin-package h2 {
             color: #fff;
-            font-size: 24px;
-            margin: 10px 0;
+            font-size: 20px;
+            margin: 8px 0;
         }
 
         .price {
-            font-size: 28px;
+            font-size: 24px;
             color: #00ff88;
-            margin: 15px 0;
+            margin: 12px 0;
             font-weight: bold;
         }
 
@@ -177,17 +139,21 @@
             background: #00ff88;
             color: #000;
             border: none;
-            padding: 12px 30px;
+            padding: 10px 25px;
             border-radius: 10px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 16px;
             transition: background 0.3s, transform 0.2s;
         }
 
         .menu-button:hover {
             background: #00cc6a;
             transform: scale(1.05);
+        }
+
+        #ton-connect {
+            margin: 20px 0;
         }
     </style>
 </body>
