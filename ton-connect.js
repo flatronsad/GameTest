@@ -1,22 +1,31 @@
 // Инициализация TON Connect
-const tonConnectUI = new TONConnectUI({
-    manifestUrl: '../Главное меню/tonconnect-manifest.json',
-    buttonRootId: 'ton-connect'
+let tonConnectUI;
+
+document.addEventListener('DOMContentLoaded', () => {
+    tonConnectUI = new TONConnectUI({
+        manifestUrl: '../Главное меню/tonconnect-manifest.json',
+        buttonRootId: 'ton-connect'
+    });
+
+    // Обработчик подключения кошелька
+    tonConnectUI.onWalletConnected = (wallet) => {
+        console.log('Wallet connected:', wallet);
+    };
+
+    // Обработчик отключения кошелька
+    tonConnectUI.onWalletDisconnected = () => {
+        console.log('Wallet disconnected');
+    };
 });
-
-// Обработчик подключения кошелька
-tonConnectUI.onWalletConnected = (wallet) => {
-    console.log('Wallet connected:', wallet);
-};
-
-// Обработчик отключения кошелька
-tonConnectUI.onWalletDisconnected = () => {
-    console.log('Wallet disconnected');
-};
 
 // Функция для покупки монет
 async function buyCoins(amount, price) {
     try {
+        if (!tonConnectUI) {
+            alert('Пожалуйста, подождите инициализации кошелька');
+            return;
+        }
+
         const wallet = await tonConnectUI.connectWallet();
         if (!wallet) {
             alert('Пожалуйста, подключите кошелек');
