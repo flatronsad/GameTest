@@ -42,13 +42,31 @@
     </div>
 
     <script>
-        const tonConnectUI = new TONConnectUI({
-            manifestUrl: '../Главное меню/tonconnect-manifest.json',
-            buttonRootId: 'ton-connect'
+        let tonConnectUI;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            tonConnectUI = new TONConnectUI({
+                manifestUrl: '../Главное меню/tonconnect-manifest.json',
+                buttonRootId: 'ton-connect'
+            });
+
+            // Обработчик подключения кошелька
+            tonConnectUI.onWalletConnected = (wallet) => {
+                console.log('Wallet connected:', wallet);
+            };
+
+            // Обработчик отключения кошелька
+            tonConnectUI.onWalletDisconnected = () => {
+                console.log('Wallet disconnected');
+            };
         });
 
         async function buyCoins(amount, price) {
             try {
+                if (!tonConnectUI) {
+                    throw new Error('TON Connect не инициализирован');
+                }
+
                 const wallet = await tonConnectUI.connectWallet();
                 if (!wallet) {
                     alert('Пожалуйста, подключите кошелек');
