@@ -1,29 +1,26 @@
-// Инициализация TonConnect UI
-const tonConnectUI = new TonConnectUI({
-    manifestUrl: 'tonconnect-manifest.json',
-    buttonRootId: 'connectWallet'
+// Инициализация TonConnect
+const connector = new TonConnect({
+    manifestUrl: 'tonconnect-manifest.json'
 });
 
-// Обработчик успешного подключения
-tonConnectUI.onWalletConnected = (wallet) => {
-    console.log('Кошелек подключен:', wallet);
-    
-    // Обновляем текст кнопки
-    const button = document.getElementById('connectWallet');
-    button.innerHTML = `
-        <img src="icons/wallet.svg" alt="Кошелек">
-        <span>${wallet.account.address.slice(0, 6)}...${wallet.account.address.slice(-4)}</span>
-    `;
-};
+// Функция для подключения кошелька
+async function connectWallet() {
+    try {
+        // Запрашиваем подключение кошелька
+        const wallet = await connector.connect();
+        console.log('Кошелек подключен:', wallet);
+        
+        // Обновляем текст кнопки
+        const button = document.getElementById('connectWallet');
+        button.innerHTML = `
+            <img src="icons/wallet.svg" alt="Кошелек">
+            <span>${wallet.account.address.slice(0, 6)}...${wallet.account.address.slice(-4)}</span>
+        `;
+    } catch (error) {
+        console.error('Ошибка при подключении кошелька:', error);
+        alert('Произошла ошибка при подключении кошелька');
+    }
+}
 
-// Обработчик отключения кошелька
-tonConnectUI.onWalletDisconnected = () => {
-    console.log('Кошелек отключен');
-    
-    // Возвращаем исходный текст кнопки
-    const button = document.getElementById('connectWallet');
-    button.innerHTML = `
-        <img src="icons/wallet.svg" alt="Подключить кошелек">
-        <span>Подключить TON</span>
-    `;
-}; 
+// Добавляем обработчик события для кнопки
+document.getElementById('connectWallet').addEventListener('click', connectWallet); 
