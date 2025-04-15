@@ -5,15 +5,12 @@ const computerChoiceText = document.getElementById('computerChoice');
 const gameResultText = document.getElementById('gameResult');
 const coinsChangeText = document.getElementById('coinsChange');
 const playAgainButton = document.getElementById('playAgain');
-const balanceElement = document.getElementById('balance');
 
 const choicesArray = ['камень', 'ножницы', 'бумага'];
 let balance = parseInt(localStorage.getItem('gameCoins')) || 1000;
-balanceElement.textContent = balance;
 
 function updateBalance(amount) {
     balance += amount;
-    balanceElement.textContent = balance;
     localStorage.setItem('gameCoins', balance);
 }
 

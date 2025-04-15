@@ -128,66 +128,21 @@ body {
     height: auto;
 }
 
-.game-option img[src*="6.svg"] {
-    width: 30px !important;
-    height: 30px !important;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 480px) {
-    .game-container {
-        padding: 10px;
-    }
-    
     .game-options {
-        gap: 10px;
-        margin-top: 60px;
-        width: 100%;
-        justify-content: space-around;
+        gap: 15px;
+        margin-top: 80px;
     }
     
     .game-option img {
-        width: 25vw;
-        min-width: 40px;
-        max-width: 60px;
+        width: 30vw;
+        min-width: 50px;
     }
 
     .nav-button {
-        width: 35px;
-        height: 35px;
-    }
-    
-    .left-button {
-        gap: 5px;
-        padding-right: 10px;
-    }
-    
-    #balance {
-        font-size: 20px;
-    }
-    
-    .coin-icon {
-        width: 25px;
-        height: 25px;
-    }
-    
-    .modal-content {
-        padding: 20px;
-        width: 90%;
-        max-width: 300px;
-    }
-    
-    .modal-content p {
-        font-size: 16px;
-    }
-    
-    #playAgain {
-        padding: 8px 16px;
-        font-size: 14px;
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -238,14 +193,14 @@ body {
 .balance-container {
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
     gap: 10px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
     border-radius: 20px;
-    z-index: 1000;
 }
 
 .coin-icon {
