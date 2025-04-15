@@ -47,7 +47,12 @@
 
         document.addEventListener('DOMContentLoaded', async function() {
             try {
-                tonConnectUI = new TonConnectUI({
+                // Проверяем, что TONConnectUI доступен
+                if (typeof window.TONConnectUI === 'undefined') {
+                    throw new Error('TONConnectUI не загружен');
+                }
+
+                tonConnectUI = new window.TONConnectUI({
                     manifestUrl: '../Главное меню/tonconnect-manifest.json',
                     buttonRootId: 'ton-connect'
                 });
