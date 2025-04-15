@@ -11,6 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Arial, sans-serif;
+    position: relative;
 }
 
 .menu-container {
@@ -20,6 +21,36 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 50px;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.wallet-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: 2px solid #fff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.wallet-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.wallet-button img {
+    width: 24px;
+    height: 24px;
 }
 
 @keyframes rotateLogo {
