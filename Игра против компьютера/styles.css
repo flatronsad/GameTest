@@ -128,6 +128,15 @@ body {
     height: auto;
 }
 
+.game-option img[src*="6.svg"] {
+    width: 30px !important;
+    height: 30px !important;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
 /* Медиа-запрос для мобильных устройств */
 @media (max-width: 480px) {
     .game-container {
@@ -229,14 +238,14 @@ body {
 .balance-container {
     position: absolute;
     top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
     border-radius: 20px;
+    z-index: 1000;
 }
 
 .coin-icon {
