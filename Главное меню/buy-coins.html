@@ -68,9 +68,12 @@
                     return;
                 }
 
-                // Проверяем, подключен ли уже кошелек
-                const walletInfo = tonConnectUI.wallet;
-                if (!walletInfo) {
+                // Отключаем кошелек перед подключением
+                await tonConnectUI.disconnect();
+                
+                // Подключаем кошелек
+                const wallet = await tonConnectUI.connectWallet();
+                if (!wallet) {
                     alert('Пожалуйста, подключите кошелек');
                     return;
                 }
