@@ -1,9 +1,0 @@
-.DS_Store
-node_modules/
-.env
-*.log
-.vscode/
-.idea/
-backup_v1/
-backup_v2/
-backup_v3/ 
