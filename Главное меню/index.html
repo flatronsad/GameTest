@@ -13,6 +13,7 @@
             <img src="icons/5.svg" alt="Логотип">
         </div>
         <div id="ton-connect"></div>
+        <div id="balance-display" class="balance-display">Баланс: 0 TON</div>
         <a href="../Игра против компьютера/index.html" class="menu-play-button">
             <img src="icons/4.svg" alt="Играть">
         </a>
@@ -20,6 +21,10 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('DOM loaded');
+            
+            // Загружаем сохраненный баланс
+            let balance = localStorage.getItem('gameBalance') || 0;
+            updateBalanceDisplay(balance);
             
             const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
                 manifestUrl: 'https://flatronsad.github.io/GameTest/Главное%20меню/tonconnect-manifest.json',
@@ -30,11 +35,28 @@
 
             tonConnectUI.onWalletConnected = (wallet) => {
                 console.log('Wallet connected:', wallet);
+                // При подключении кошелька можно загрузить реальный баланс
+                // или оставить сохраненный баланс из localStorage
             };
 
             tonConnectUI.onWalletDisconnected = () => {
                 console.log('Wallet disconnected');
             };
+
+            // Функция для обновления баланса
+            window.updateBalance = function(newBalance) {
+                balance = newBalance;
+                localStorage.setItem('gameBalance', balance);
+                updateBalanceDisplay(balance);
+            }
+
+            // Функция для отображения баланса
+            function updateBalanceDisplay(balance) {
+                const balanceDisplay = document.getElementById('balance-display');
+                if (balanceDisplay) {
+                    balanceDisplay.textContent = `Баланс: ${balance} TON`;
+                }
+            }
         });
     </script>
 </body>

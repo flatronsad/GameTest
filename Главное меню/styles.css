@@ -147,4 +147,16 @@ body {
 
 .connect-button:hover {
     background-color: #006699;
+}
+
+.balance-display {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #0088cc;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 16px;
+    z-index: 1000;
 } 
