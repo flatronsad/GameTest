@@ -68,8 +68,7 @@
             const buyCoinsButton = document.getElementById('buyCoinsButton');
             if (buyCoinsButton) {
                 buyCoinsButton.addEventListener('click', function() {
-                    // Открываем новую вкладку для покупки монет
-                    window.open('buy-coins.html', '_blank');
+                    window.location.href = 'buy-coins.html';
                 });
             }
         });
