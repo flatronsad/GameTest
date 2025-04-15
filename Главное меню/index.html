@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Главное меню</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@tonconnect/sdk@2.1.3/dist/tonconnect-sdk.min.js"></script>
     <script src="https://unpkg.com/@tonconnect/ui@2.1.3/dist/tonconnect-ui.min.js"></script>
 </head>
 <body>
@@ -12,7 +13,7 @@
         <div class="menu-logo">
             <img src="icons/5.svg" alt="Логотип">
         </div>
-        <div id="ton-connect"></div>
+        <button id="connect-wallet" class="connect-button">Подключить TON кошелек</button>
         <a href="../Игра против компьютера/index.html" class="menu-play-button">
             <img src="icons/4.svg" alt="Играть">
         </a>
@@ -30,17 +31,19 @@
             
             const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
                 manifestUrl: 'https://flatronsad.github.io/GameTest/Главное%20меню/tonconnect-manifest.json',
-                buttonRootId: 'ton-connect'
+                buttonRootId: 'connect-wallet'
             });
 
             console.log('TON Connect UI initialized');
 
             tonConnectUI.onWalletConnected = (wallet) => {
                 console.log('Wallet connected:', wallet);
+                document.getElementById('connect-wallet').textContent = 'Кошелек подключен';
             };
 
             tonConnectUI.onWalletDisconnected = () => {
                 console.log('Wallet disconnected');
+                document.getElementById('connect-wallet').textContent = 'Подключить TON кошелек';
             };
         });
     </script>
